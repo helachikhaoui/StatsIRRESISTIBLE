@@ -5,10 +5,19 @@ var express = require('express');
 var path = require('path');
 var CronJob = require('cron').CronJob;
 var prediction = require('./routes/prediction');
+var cors = require('cors');
 
 
 
+// Cross Origin middleware
+app.use(function(req, res, next){
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+})
 
+app.use(cors())
 //Set our api routes
 app.use("/api", api);
 
